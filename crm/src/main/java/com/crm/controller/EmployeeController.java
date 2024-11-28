@@ -78,6 +78,7 @@ public class EmployeeController {
         return  new ResponseEntity<>(employeeDto, HttpStatus.OK);
     }
 }
+//these is all flow
 /*Postman: Sends a POST request with JSON body to the /api/users endpoint.
 Controller: Handles the request and calls the createUser() method of the Service layer.
 Service: Converts the DTO into an Entity, saves it via the Repository, and converts the saved Entity back into a DTO.
