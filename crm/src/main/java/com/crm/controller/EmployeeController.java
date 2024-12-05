@@ -33,11 +33,6 @@ public class EmployeeController {
 
         return  new ResponseEntity<>(employeeDto, HttpStatus.CREATED);
 
-        /*जब क्लाइंट /add Endpoint पर POST रिक्वेस्ट भेजता है,
-         तो @Valid डेटा की वैधता चेक करता है।
-अगर डेटा वैध नहीं है, तो Error Message और Status Code 500 रिटर्न होता है।
-अगर डेटा वैध है, तो employeeService.addEmployee(dto) द्वारा डेटा डाटाबेस में सेव होता है।
-सेव किया गया डेटा और Status Code 201 रिटर्न होता है।*/
     }
 
 
@@ -45,9 +40,7 @@ public class EmployeeController {
 
     @DeleteMapping
     public ResponseEntity<String> deleteEmployee(@RequestParam Long id ) {
-        // TODO Auto-generated method stub
         employeeService.deleteEmployee(id);
-
         return new ResponseEntity<>("deleted",HttpStatus.OK);
         // http://localhost:8080/api/v1/employee?id=1
 
@@ -58,9 +51,9 @@ public class EmployeeController {
     @PutMapping
     public ResponseEntity<EmployeeDto> UpdateEmployee(@RequestParam Long id , @RequestBody EmployeeDto dto ){
         //get the employee
-       EmployeeDto employeeDto= employeeService.updateEmployee(id,dto);
+       EmployeeDto vd= employeeService.updateEmployee(id,dto);
 
-        return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+        return new ResponseEntity<>(vd, HttpStatus.OK);
     }
 
 
@@ -78,11 +71,3 @@ public class EmployeeController {
         return  new ResponseEntity<>(employeeDto, HttpStatus.OK);
     }
 }
-//these is all flow
-/*Postman: Sends a POST request with JSON body to the /api/users endpoint.
-Controller: Handles the request and calls the createUser() method of the Service layer.
-Service: Converts the DTO into an Entity, saves it via the Repository, and converts the saved Entity back into a DTO.
-Repository: Saves the Entity to the database.
-Database: Stores the record in the users table.
-Response: The Controller sends a 201 Created response with the created UserDTO back to Postman.
-*/

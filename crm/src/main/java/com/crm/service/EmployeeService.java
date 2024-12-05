@@ -50,6 +50,7 @@ public class EmployeeService {
 
     public List<EmployeeDto> getEmployee(int pageNo, int pageSize, String sortBy, String sortDir) {
         Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
         Pageable page = PageRequest.of(pageNo, pageSize,sort);
 
         Page<Employee> all = employeeRepository.findAll(page);
